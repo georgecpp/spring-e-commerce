@@ -50,7 +50,7 @@ public class ProductsController {
     }
 
     @GetMapping(value = "/products", params = {"category", "brandName"})
-    public Collection<Product> getProductsOfCategory(@RequestParam(value = "category") String category, @RequestParam(value = "brandName") String brandName) {
+    public Collection<Product> getProductsOfCategoryAndBrand(@RequestParam(value = "category") String category, @RequestParam(value = "brandName") String brandName) {
         return productsService.getAllProductsOfCategoryBrand(category, brandName);
     }
 
