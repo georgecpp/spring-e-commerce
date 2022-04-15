@@ -1,6 +1,5 @@
 package com.androcpp.ecommerce.beans;
 
-import com.androcpp.ecommerce.exception.NoProductException;
 import com.androcpp.ecommerce.model.Brand;
 import com.androcpp.ecommerce.model.Phone;
 import com.androcpp.ecommerce.model.Product;
@@ -17,7 +16,7 @@ import java.util.List;
 public abstract class Datasource implements Database {
 
     protected List<Product> productItems = new ArrayList<>();
-    protected String dbName ="";
+    protected String dbName;
 
     @Override
     public void createDb(String name, String fromFile) {

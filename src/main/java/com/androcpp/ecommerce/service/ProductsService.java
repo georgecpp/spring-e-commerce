@@ -1,6 +1,5 @@
 package com.androcpp.ecommerce.service;
 
-import com.androcpp.ecommerce.exception.NoProductException;
 import com.androcpp.ecommerce.model.Product;
 import com.androcpp.ecommerce.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,9 @@ import java.util.stream.Collectors;
 @Service
 public class ProductsService {
 
-    @Autowired
     ProductRepository products;
 
+    @Autowired
     public ProductsService(ProductRepository products) {
         this.products = products;
     }

@@ -16,11 +16,11 @@ import java.util.List;
 
 @RestController
 public class ProductsController {
+    private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
 
-    @Autowired
     private final ProductsService productsService;
 
-    private static final Logger logger = LoggerFactory.getLogger(ProductsController.class);
+    @Autowired
     public ProductsController(ProductsService productsService) {
         this.productsService = productsService;
     }
@@ -28,10 +28,8 @@ public class ProductsController {
     @GetMapping("/products")
     List<Product> getAllProducts() {
         try {
-            List<Product> products = productsService.getAllProducts();
-            return products;
-        }
-        catch (NoProductException ex) {
+            return productsService.getAllProducts();
+        } catch (NoProductException ex) {
             logger.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No products! Switch back to dev profile!", ex);
         }
@@ -40,10 +38,8 @@ public class ProductsController {
     @GetMapping("/products/{brand}")
     List<Product> getSpecificProducts(@PathVariable String brand) {
         try {
-            List<Product> products = productsService.getProductsByBrand(brand);
-            return products;
-        }
-        catch (NoProductException ex) {
+            return productsService.getProductsByBrand(brand);
+        } catch (NoProductException ex) {
             logger.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No products! Switch back to dev profile!", ex);
         }
@@ -58,8 +54,7 @@ public class ProductsController {
                 res += products.get(i).toString() + "\n";
             }
             return res;
-        }
-        catch (NoProductException ex) {
+        } catch (NoProductException ex) {
             logger.error(ex.getMessage());
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No products! Switch back to dev profile!", ex);
         }
